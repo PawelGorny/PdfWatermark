@@ -7,11 +7,11 @@ import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.parser.*;
+import org.junit.Test;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
 
 import static org.junit.Assert.assertFalse;
@@ -25,13 +25,15 @@ public class PDFWatermarkServiceTest {
     public static void main(String args[])
     {
         try {
-            testServiceWatermark1();
+            PDFWatermarkServiceTest test = new PDFWatermarkServiceTest();
+            test.testServiceWatermark1();
         }catch (Exception e){
             System.err.println(e.getMessage());
         }
     }
 
-    public static void testServiceWatermark1() throws Exception{
+    @Test
+    public void testServiceWatermark1() throws Exception{
 
         // PRE TESTING DATA
         String filename = "watermark-test.pdf";
@@ -56,6 +58,11 @@ public class PDFWatermarkServiceTest {
             lines.add(line1);
             lines.add(line2);
             lines.add(line3);
+
+            Map<String, String > infos = new HashMap<>(1);
+            infos.put("Title", "Watermark test");
+            infos.put("Creator","MyAppJunit");
+            settings.setInfos(infos);
 
             // PERFORM TESTS
 
@@ -91,6 +98,9 @@ public class PDFWatermarkServiceTest {
         //POST TESTING
         deletePDF(filename);
 
+//        FileOutputStream fileOutputStream = new FileOutputStream("new-pdf.pdf");
+//        fileOutputStream.write(result);
+//        fileOutputStream.close();
     }
 
     public static boolean containsText(InputStream fileIn, String watermarkTextLine, boolean allPages) throws IOException {

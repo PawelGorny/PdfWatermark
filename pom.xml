@@ -4,7 +4,7 @@
 
     <groupId>com.pawelgorny</groupId>
     <artifactId>pdfwatermark</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <build>
         <plugins>
             <plugin>
@@ -15,24 +15,65 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <destFile>${sonar.jacoco.reportPath}</destFile>
+                        </configuration>
+                        <id>pre-test</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <!-- we want to execute jacoco:prepare-agent-integration in test phase,
+                    but before executing maven failsafe plugin -->
+                    <execution>
+                        <configuration>
+                            <destFile>${sonar.jacoco.itReportPath}</destFile>
+                        </configuration>
+                        <id>pre-itest</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>prepare-agent-integration</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <packaging>jar</packaging>
 
     <name>pdfwatermark</name>
+    <developers>
+        <developer>
+            <name>Pawel Gorny</name>
+            <url>https://pawelgorny.com</url>
+        </developer>
+    </developers>
     <url>https://github.com/PawelGorny/PdfWatermark</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <itextVersion>5.5.12</itextVersion>
-        <org.springframework-version>4.3.11.RELEASE</org.springframework-version>
+        <itextVersion>5.5.13.1</itextVersion>
+        <org.springframework-version>4.3.25.RELEASE</org.springframework-version>
+
+        <sonar.jacoco.reportPath>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.jacoco.itReportPath>${project.basedir}/target/jacoco-it.exec</sonar.jacoco.itReportPath>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <jacoco-maven-plugin-version>0.8.4</jacoco-maven-plugin-version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.10</version>
+            <version>4.12</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -64,7 +105,7 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.5</version>
+            <version>2.12.1</version>
         </dependency>
 
     </dependencies>

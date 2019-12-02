@@ -13,12 +13,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
 public class PdfWatermarkServiceImpl implements PDFWatermarkService {
 
     private static final Logger LOGGER = org.apache.logging.log4j.LogManager.getLogger(PdfWatermarkServiceImpl.class);
+
     private static final String LOG_ERROR_WATERMARK_POSITION_NOT_FOUND = "Watermark position not found in available values";
     private static final double HALF_PI = Math.PI / 2;
     private static final int UNDERLINED_FONT_ADDSPACE_DIVSOR = 4;
@@ -63,6 +65,14 @@ public class PdfWatermarkServiceImpl implements PDFWatermarkService {
                 previousVariables = variables;
                 lastWidth = variables.getPageWidth();
                 lastHeight = variables.getPageHeight();
+            }
+
+            if (settings.getInfos()!=null) {
+                Map<String, String> info = reader.getInfo();
+                for (Map.Entry<String , String> entry : settings.getInfos().entrySet()){
+                    info.put(entry.getKey(), entry.getValue());
+                }
+                pdfStamper.setMoreInfo(info);
             }
 
             pdfStamper.close();

@@ -9,6 +9,7 @@ import com.itextpdf.text.Font.FontFamily;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Settings for the PdfWatermark service: Position, align of the text, layer...
@@ -63,6 +64,8 @@ public class PdfWatermarkSettings {
     private WatermarkPosition watermarkPosition;
     private Layer layer;
     private Align align;
+
+    private Map<String, String> infos = null;
 
     private static final int DEFAULT_FONTSIZE = 14;
     private static final float DEFAULT_OPACITY = 0.7F;
@@ -149,5 +152,11 @@ public class PdfWatermarkSettings {
         this.align = align;
     }
 
+    public Map<String, String> getInfos() {
+        return infos;
+    }
 
+    public void setInfos(Map<String, String> infos) {
+        this.infos = infos;
+    }
 }
