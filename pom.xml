@@ -5,51 +5,10 @@
     <groupId>com.pawelgorny</groupId>
     <artifactId>pdfwatermark</artifactId>
     <version>1.0</version>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco-maven-plugin-version}</version>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <destFile>${sonar.jacoco.reportPath}</destFile>
-                        </configuration>
-                        <id>pre-test</id>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <!-- we want to execute jacoco:prepare-agent-integration in test phase,
-                    but before executing maven failsafe plugin -->
-                    <execution>
-                        <configuration>
-                            <destFile>${sonar.jacoco.itReportPath}</destFile>
-                        </configuration>
-                        <id>pre-itest</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>prepare-agent-integration</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
     <packaging>jar</packaging>
 
     <name>pdfwatermark</name>
+    <description>PDF Watermarking library</description>
     <developers>
         <developer>
             <name>Pawel Gorny</name>
@@ -57,6 +16,20 @@
         </developer>
     </developers>
     <url>https://github.com/PawelGorny/PdfWatermark</url>
+
+    <scm>
+        <connection>scm:git:https://github.com/PawelGorny/PdfWatermark.git</connection>
+        <developerConnection>scm:git:ssh://github.com/PawelGorny/PdfWatermark.git</developerConnection>
+        <url>https://github.com/PawelGorny/PdfWatermark</url>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -109,4 +82,49 @@
         </dependency>
 
     </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <destFile>${sonar.jacoco.reportPath}</destFile>
+                        </configuration>
+                        <id>pre-test</id>
+                        <phase>process-test-classes</phase>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <!-- we want to execute jacoco:prepare-agent-integration in test phase,
+                    but before executing maven failsafe plugin -->
+                    <execution>
+                        <configuration>
+                            <destFile>${sonar.jacoco.itReportPath}</destFile>
+                        </configuration>
+                        <id>pre-itest</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>prepare-agent-integration</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
