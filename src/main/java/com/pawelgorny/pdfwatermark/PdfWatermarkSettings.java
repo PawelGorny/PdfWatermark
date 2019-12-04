@@ -64,6 +64,7 @@ public class PdfWatermarkSettings {
     private WatermarkPosition watermarkPosition;
     private Layer layer;
     private Align align;
+    private boolean firstPageOnly = false;
 
     private Map<String, String> infos = null;
 
@@ -158,5 +159,13 @@ public class PdfWatermarkSettings {
 
     public void setInfos(Map<String, String> infos) {
         this.infos = infos;
+    }
+
+    public boolean isFirstPageOnly() {
+        return firstPageOnly;
+    }
+
+    public void setFirstPageOnly(boolean firstPageOnly) {
+        this.firstPageOnly = firstPageOnly;
     }
 }

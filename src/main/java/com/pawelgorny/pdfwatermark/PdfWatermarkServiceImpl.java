@@ -65,6 +65,10 @@ public class PdfWatermarkServiceImpl implements PDFWatermarkService {
                 previousVariables = variables;
                 lastWidth = variables.getPageWidth();
                 lastHeight = variables.getPageHeight();
+
+                if (pageNumber==1 && settings.isFirstPageOnly()){
+                    break;
+                }
             }
 
             if (settings.getInfos()!=null) {
