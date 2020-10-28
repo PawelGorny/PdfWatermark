@@ -103,9 +103,9 @@ public class PDFWatermarkServiceTest {
         //POST TESTING
         deletePDF(filename);
 
-        FileOutputStream fileOutputStream = new FileOutputStream("new-pdf.pdf");
-        fileOutputStream.write(result);
-        fileOutputStream.close();
+//        FileOutputStream fileOutputStream = new FileOutputStream("new-pdf.pdf");
+//        fileOutputStream.write(result);
+//        fileOutputStream.close();
     }
 
 //    public static boolean containsText(InputStream fileIn, String watermarkTextLine, boolean allPages) throws IOException {
