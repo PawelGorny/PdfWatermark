@@ -7,6 +7,7 @@ Release notes
 1.1.1
 ---
 * migration to openpdf
+
 1.1
 ---
 * possibility to stamp only the first page
