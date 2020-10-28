@@ -1,11 +1,15 @@
 package com.pawelgorny.pdfwatermark;
 
 
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Font.FontFamily;
+//import com.itextpdf.text.BaseColor;
+//import com.itextpdf.text.Element;
+//import com.itextpdf.text.Font;
+//import com.itextpdf.text.Font.FontFamily;
 
+import com.lowagie.text.Element;
+import com.lowagie.text.Font;
+
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -56,9 +60,9 @@ public class PdfWatermarkSettings {
 
     }
 
-    private FontFamily fontFamily;
+    private int fontFamily;
     private int fontSize;
-    private BaseColor fontColor;
+    private Color fontColor;
     private FontStyle fontStyle;
     private float opacity;
     private WatermarkPosition watermarkPosition;
@@ -78,9 +82,9 @@ public class PdfWatermarkSettings {
     public PdfWatermarkSettings(boolean defaultInitialise) {
         this();
         if (defaultInitialise) {
-            fontFamily = FontFamily.HELVETICA;
+            fontFamily = Font.HELVETICA;
             fontSize = DEFAULT_FONTSIZE;
-            fontColor = BaseColor.LIGHT_GRAY;
+            fontColor = Color.LIGHT_GRAY;
             fontStyle = FontStyle.BOLD;
             align = Align.ALIGN_CENTER;
             opacity = DEFAULT_OPACITY;
@@ -89,7 +93,7 @@ public class PdfWatermarkSettings {
         }
     }
 
-    public FontFamily getFontFamily() {
+    public int getFontFamily() {
         return fontFamily;
     }
 
@@ -97,7 +101,7 @@ public class PdfWatermarkSettings {
         return fontSize;
     }
 
-    public BaseColor getFontColor() {
+    public Color getFontColor() {
         return fontColor;
     }
 
@@ -113,7 +117,7 @@ public class PdfWatermarkSettings {
         return watermarkPosition;
     }
 
-    public void setFontFamily(FontFamily fontFamily) {
+    public void setFontFamily(int fontFamily) {
         this.fontFamily = fontFamily;
     }
 
@@ -121,7 +125,7 @@ public class PdfWatermarkSettings {
         this.fontSize = fontSize;
     }
 
-    public void setFontColor(BaseColor fontColor) {
+    public void setFontColor(Color fontColor) {
         this.fontColor = fontColor;
     }
 

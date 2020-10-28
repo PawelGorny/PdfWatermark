@@ -1,10 +1,14 @@
 package com.pawelgorny.pdfwatermark;
 
 
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.*;
+//import com.itextpdf.text.DocumentException;
+//import com.itextpdf.text.Font;
+//import com.itextpdf.text.Phrase;
+//import com.itextpdf.text.pdf.*;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Font;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.*;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,7 +77,7 @@ public class PdfWatermarkServiceImpl implements PDFWatermarkService {
             }
 
             if (settings.getInfos()!=null) {
-                Map<String, String> info = reader.getInfo();
+                HashMap<String, String> info = new HashMap<>(reader.getInfo());
                 for (Map.Entry<String , String> entry : settings.getInfos().entrySet()){
                     info.put(entry.getKey(), entry.getValue());
                 }
